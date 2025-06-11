@@ -1,0 +1,26 @@
+{
+  "name": "airbnb-monitor",
+  "version": "1.0.0",
+  "description": "Automated Airbnb listing monitor for NYC",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js start",
+    "test": "node src/index.js run-once",
+    "status": "node src/index.js status"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "sqlite3": "^5.1.6",
+    "nodemailer": "^6.9.7",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.40.0"
+  },
+  "author": "Airbnb Monitor Bot",
+  "license": "MIT"
+} 

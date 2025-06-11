@@ -1,0 +1,8 @@
+# Copy these environment variables to Railway:
+
+EMAIL_USER=your.email@gmail.com
+EMAIL_PASS=your-app-specific-password
+
+# Optional overrides:
+MONITOR_INTERVAL=60
+HEADLESS_MODE=true 
