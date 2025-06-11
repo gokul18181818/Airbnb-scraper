@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { CronJob } = require('cron');
+const cron = require('node-cron');
 const AirbnbMonitor = require('./monitor');
 const config = require('./config');
 
@@ -76,9 +76,12 @@ class AirbnbMonitorApp {
     // Set up cron job
     const cronExpression = `*/${config.monitor.intervalMinutes} * * * *`;
     
-    this.cronJob = new CronJob(cronExpression, async () => {
+    this.cronJob = cron.schedule(cronExpression, async () => {
       await this.monitor.run();
-    }, null, true, 'America/New_York');
+    }, {
+      scheduled: true,
+      timezone: 'America/New_York'
+    });
 
     this.isScheduled = true;
     console.log(`📅 Monitor scheduled with cron expression: ${cronExpression}`);
@@ -127,7 +130,7 @@ class AirbnbMonitorApp {
 
   async stop() {
     if (this.cronJob) {
-      this.cronJob.stop();
+      this.cronJob.destroy();
       console.log('⏰ Cron job stopped');
     }
     
